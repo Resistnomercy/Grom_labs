@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book id="b1">
+        <title>Введение в психоанализ</title>
+        <author>Зигмунд Фрейд</author>
+        <year>1917</year>
+        <genre>Психология</genre>
+        <price>450.00</price>
+    </book>
+    <book id="b2">
+        <title>Воля к власти</title>
+        <author>Фридрих Ницше</author>
+        <year>1901</year>
+        <genre>Философия</genre>
+        <price>560.50</price>
+    </book>
+    <book id="b3">
+        <title>Анатомия человеческой деструктивности</title>
+        <author>Эрих Фромм</author>
+        <year>1973</year>
+        <genre>Психология</genre>
+        <price>690.90</price>
+    </book>
+    <book id="b4">
+        <title>Человек в поисках смысла</title>
+        <author>Виктор Франкл</author>
+        <year>1946</year>
+        <genre>Психология</genre>
+        <price>480.00</price>
+    </book>
+    <book id="b5">
+        <title>Учебник логики</title>
+        <author>Георгий Челпанов</author>
+        <year>1919</year>
+        <genre>Логика</genre>
+        <price>300.00</price>
+    </book>
+    <book id="b6">
+        <title>Пир</title>
+        <author>Платон</author>
+        <year>380</year>
+        <genre>Философия</genre>
+        <price>250.00</price>
+    </book>
+</library>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Список книг</title>
+  </head>
+  <body>
+    <style>
+      body{
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      h2{
+        color:darkblue;
+      }
+      .book{
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+    </style>
+
+    <h1>Список книг</h1>
+    <div id="book-list"></div>
+
+    <h2>Книги по жанру "Психология"</h2>
+    <ul id="filtered-books"></ul>
+
+    <h2>Средняя цена книг</h2>
+    <p id="average-price"></p>
+
+
+    <script>
+      fetch("library.xml")
+        .then((response) => response.text())
+        .then((xmlString) => {
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+
+          const books = xmlDoc.getElementsByTagName("book");
+          let totalPrice = 0;
+
+          const bookListDiv = document.getElementById("book-list");
+          const filteredList = document.getElementById("filtered-books");
+
+          for(let book of books){
+            const title = book.getElementsByTagName("title")[0].textContent;
+            const author = book.getElementsByTagName("author")[0].textContent;
+            const year = book.getElementsByTagName("year")[0].textContent;
+            const genre = book.getElementsByTagName("genre")[0].textContent;
+            const price = parseFloat(book.getElementsByTagName("price")[0].textContent);
+
+            const bookDiv = document.createElement("div");
+            bookDiv.className = "book";
+            bookDiv.innerHTML = `
+                <strong>Название:</strong>${title}<br>
+                <strong>Автор:</strong>${author}<br>
+                <strong>Год:</strong>${year}<br>
+                <strong>Жанр:</strong>${genre}<br>
+                <strong>Цена:</strong>${price.toFixed(2)}<br>
+              `;
+
+              bookListDiv.appendChild(bookDiv);
+
+              totalPrice += price;
+
+              const targetGenre = "Психология";
+              if(genre === targetGenre){
+                const li = document.createElement("li");
+                li.textContent = title;
+                filteredList.appendChild(li)
+              }
+          }
+
+          const average = totalPrice / books.length;
+          document.getElementById("average-price").textContent = 
+            `${average.toFixed(2)} руб.`;
+        
+          })
+          .catch((error) =>{
+              console.error("Ошибка при загрузке или обработке файла XML:",error);
+          });
+    </script>
+  </body>
+</html>
